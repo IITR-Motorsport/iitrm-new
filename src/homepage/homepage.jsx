@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./homepage.css";
+import { Link } from "react-router-dom";
 import Navbar from "../components/navbar/navbar";
 import Back1 from "../assets/slider1.jpg";
 import Back2 from "../assets/slider2.jpg";
@@ -9,73 +10,87 @@ import Back5 from "../assets/slider5.jpg";
 import Back6 from "../assets/slider6.jpg";
 import Back7 from "../assets/slider7.jpg";
 import Back8 from "../assets/slider8.jpg";
+import IITR from "../assets/iitrlogo.svg";
+import Melasta from "../assets/partners/melasta.svg";
+import Cft from "../assets/partners/cft.svg";
+import Goodluck from "../assets/partners/goodluck.svg";
+import Mathworks from "../assets/mathworks.svg";
+import Mrf from "../assets/mrf.svg";
+import CP from "../assets/century.svg";
+import Gripumps from "../assets/partners/gri-pump.svg";
+import Ipg from "../assets/ipg.svg";
+import Solid from "../assets/sw.svg";
+import Bender from "../assets/bender.svg";
 import testimonials from "./testimonialsData.json";
-import AwesomeSlider from 'react-awesome-slider';
-import 'react-awesome-slider/dist/styles.css';
-
+import AwesomeSlider from "react-awesome-slider";
+import "react-awesome-slider/dist/styles.css";
 
 class Homepage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      backdata: 
-      [
-          {
-              "id": 0,
-              "image":Back1,
-              "text":"qwertyuiop"
-          },
-          {
-              "id": 1,
-              "image":Back2,
-              "text":""
-          },
-          {
-              "id": 2,
-              "image":Back3,
-              "text":""
-          },
-          {
-              "id": 3,
-              "image":Back4,
-              "text":""
-          },
-          {
-              "id": 4,
-              "image":Back5,
-              "text":""
-          },
-          {
-              "id": 5,
-              "image":Back6,
-              "text":""
-          },
-          {
-              "id": 6,
-              "image":Back7,
-              "text":""
-          },
-          {
-              "id": 7,
-              "image":Back8,
-              "text":""
-          }
+      backdata: [
+        {
+          id: 0,
+          image: Back1,
+          text:
+            "1st in Acceleration Event in Formula Green 2020.",
+        },
+        {
+          id: 1,
+          image: Back2,
+          text:
+            "RMSE'19 unveiled by our honorable Director Dr. Ajit Chaturvedi",
+        },
+        {
+          id: 2,
+          image: Back7,
+          text:
+            "Secured the 3rd position in 5th Formula Green & the 1st position in the Acceleration Event",
+        },
+        {
+          id: 3,
+          image: Back8,
+          text:
+            "Secured the 2nd position in Cost and Manufacturing Event & the 2nd position in Business Presentation Event",
+        },
+        {
+          id: 4,
+          image: Back3,
+          text: "Currently Ranked No. 1 Formula Student electric team in India",
+        },
+        {
+          id: 5,
+          image: Back4,
+          text: "First project. 1st in Fuel economy",
+        },
+        {
+          id: 6,
+          image: Back5,
+          text: "Won IMechE award worth 2500 euro at Silverstone 2013",
+        },
+        {
+          id: 7,
+          image: Back6,
+          text: "CAMS Inspiring motorsports award in Australia 2015 for our first electric car",
+        },
       ],
       activeIndexHome: 0,
       activeIndex: 2,
     };
   }
+
   leftscroll = () => {
     var i = this.state.activeIndex;
     if (i === 0) {
       i = testimonials.length - 1;
       this.setState({
-        activeIndex: i
+        activeIndex: i,
       });
     } else {
       i--;
       this.setState({
-        activeIndex: i
+        activeIndex: i,
       });
     }
   };
@@ -83,68 +98,91 @@ class Homepage extends Component {
     var i = this.state.activeIndex;
     if (i === testimonials.length - 1) {
       this.setState({
-        activeIndex: 0
+        activeIndex: 0,
       });
     } else {
       i++;
       this.setState({
-        activeIndex: i  
+        activeIndex: i,
       });
     }
   };
-leftscrollHome = () => {
-  var i = this.state.activeIndexHome;
-  if (i === 0) {
-    i = testimonials.length - 1;
-    this.setState({
-      activeIndexHome: i
-    });
-  } else {
-    i--;
-    this.setState({
-      activeIndexHome: i
-    });
-  }
-};
-rightscrollHome = () => {
-  var i = this.state.activeIndexHome;
-  if (i === this.state.backdata.length - 1) {
-    this.setState({
-      activeIndexHome: 0
-    });
-  } else {
-    i++;
-    this.setState({
-      activeIndexHome: i
-    });
-  }
-};
-render(){
- ;     return (
+  leftscrollHome = () => {
+    var i = this.state.activeIndexHome;
+    if (i === 0) {
+      i = testimonials.length - 1;
+      this.setState({
+        activeIndexHome: i,
+      });
+    } else {
+      i--;
+      this.setState({
+        activeIndexHome: i,
+      });
+    }
+  };
+  rightscrollHome = () => {
+    var i = this.state.activeIndexHome;
+    if (i === this.state.backdata.length - 1) {
+      this.setState({
+        activeIndexHome: 0,
+      });
+    } else {
+      i++;
+      this.setState({
+        activeIndexHome: i,
+      });
+    }
+  };
+  render() {
+    return (
       <div className="homepage">
-        
-        {/* {this.state.backdata.map((introDetail,index)=>{
-          if(index === this.state.activeIndexHome){
-            return(
+        <div className="homepage-navbar-set">
+          <Navbar></Navbar>
+        </div>
+        {this.state.backdata.map((introDetail, index) => {
+          if (index === this.state.activeIndexHome) {
+            return (
               <div>
-              <button
-              className="homepage-projects-leftslide"
-                onClick={this.leftscrollHome}
+                <div
+                  style={{ display: "flex", justifyContent: "space-between" }}
                 >
-                <div className="arrow-left"></div>
-                </button>
-                <button
-                className="homepage-projects-rightslide"
-                onClick={this.rightscrollHome}
+                  <button
+                    style={{ display: "flex", justifyContent: "flex-start" }}
+                    onClick={this.leftscrollHome}
+                  >
+                    <div className="homepage-projects-leftslide">
+                      <div className="arrow-left"></div>
+                    </div>
+                  </button>
+                  <button
+                    style={{ display: "flex", justifyContent: "flex-end" }}
+                    onClick={this.rightscrollHome}
+                  >
+                    <div className="homepage-projects-rightslide">
+                      <div className="arrow-right"></div>
+                    </div>
+                  </button>
+                </div>
+                <div className="intro-text">
+                  
+                  {introDetail.text}
+                </div>
+                <div
+                  className="intro-slider"
+                  style={{
+                    backgroundImage: `url(${introDetail.image})`,
+                    backgroundSize: "cover",
+                    backgroundRepeat: "no-repeat",
+                  }}
                 >
-                <div className="arrow-right"></div>
-                </button>
-                <div className="intro-slider" style={{backgroundImage: `url(${introDetail.image})`, backgroundSize:"cover", backgroundRepeat:"no-repeat"}}>"oDetail.id}</div>
-                </div>)
-              }
-            })} */}
-        <div className="intro-slider">
-            <Navbar></Navbar>
+                  {introDetail.id}
+                </div>
+              </div>
+            );
+          }
+        })}
+        {/* <div className="intro-slider">
           <AwesomeSlider>
             <div className="sliderphoto" data-src={Back1} />
             <div className="sliderphoto" data-src={Back2} />
@@ -155,20 +193,36 @@ render(){
             <div className="sliderphoto" data-src={Back7} />
             <div className="sliderphoto" data-src={Back8} />
           </AwesomeSlider>
-        </div>
-
-        
+        </div> */}
         <div className="homepage-projects">
-          
           <div className="homepage-heading">PROJECTS</div>
-          <div className="homepage-projects-images" >
-            <div className="homepage-projects-image-row">
-              <div className="homepage-projects-image1"><a className="projects-image" ></a></div>
-              <div className="homepage-projects-image2"><a className="projects-image"></a></div>
-            </div>
-            <div className="homepage-projects-image-row">
-              <div className="homepage-projects-image3"><a className="projects-image"></a></div>
-              <div className="homepage-projects-image4"><a className="projects-image"></a></div>
+          <div className="homepage-projects-images">
+            <div className="homepage-projects-column1"></div>
+            <div className="homepage-projects-column2">
+              <div className="homepage-projects-image-row">
+                <Link to="/project/0">
+                  <div className="homepage-projects-image1">
+                    <a className="projects-image"></a>
+                  </div>
+                </Link>
+                <Link to="/project/1">
+                  <div className="homepage-projects-image2">
+                    <a className="projects-image"></a>
+                  </div>
+                </Link>
+              </div>
+              <div className="homepage-projects-image-row">
+                <Link to="/project/2">
+                  <div className="homepage-projects-image3">
+                    <a className="projects-image"></a>
+                  </div>
+                </Link>
+                <Link to="/project/3">
+                  <div className="homepage-projects-image4">
+                    <a className="projects-image"></a>
+                  </div>
+                </Link>
+              </div>
             </div>
           </div>
           <div className="homepage-projects-viewall">VIEW ALL PROJECTS</div>
@@ -216,15 +270,38 @@ render(){
           <div className="homepage-sponsors-all">
             <div className="homepage-sponsors-golden">
               <div className="gold-heading">GOLD</div>
-              <div className="colored-sponsors"></div>
+              <br></br>
+              <br></br>
+              <div className="colored-sponsors">
+                <img className="sponsor-image" src={IITR}></img>
+                <img className="sponsor-image" src={Melasta}></img>
+              </div>
             </div>
             <div className="homepage-sponsors-silver">
               <div className="silver-heading">SILVER</div>
-              <div className="colored-sponsors"></div>
+              <br></br>
+              <br></br>
+              <div className="colored-sponsors">
+                <img className="sponsor-image" src={Cft}></img>
+                <img
+                  className="sponsor-image current-photos-indiv-goodluck"
+                  src={Goodluck}
+                ></img>
+              </div>
             </div>
             <div className="homepage-sponsors-bronze">
               <div className="bronze-heading">BRONZE</div>
-              <div className="colored-sponsors"></div>
+              <br></br>
+              <br></br>
+              <div className="colored-sponsors">
+                <img className="sponsor-image" src={Mathworks}></img>
+                <img className="sponsor-image" src={Mrf}></img>
+                <img className="sponsor-image" src={CP}></img>
+                <img className="sponsor-image" src={Gripumps}></img>
+                <img className="sponsor-image" src={Ipg}></img>
+                <img className="sponsor-image" src={Solid}></img>
+                <img className="sponsor-image" src={Bender}></img>
+              </div>
             </div>
           </div>
           <div className="homepage-sponsors-viewall">
@@ -237,9 +314,11 @@ render(){
         <div className="homepage-blogs">
           <div className="homepage-blogs-heading">
             <div className="homepage-blogs-mainheading">From the Blog</div>
-            <a><div className="homepage-blogs-seeall">
-              SEE ALL VIEWS<hr className="homepage-blogs-seeall-line"></hr>
-            </div></a>
+            <a>
+              <div className="homepage-blogs-seeall">
+                SEE ALL VIEWS<hr className="homepage-blogs-seeall-line"></hr>
+              </div>
+            </a>
           </div>
           <div className="homepage-blogs-allblogs">
             <div className="homepage-blogs-blog">
